@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <Greeting />
-    <UserCard />
-    <Product />
+    <Greeting />
+    <Greeting />
   </>
 );
