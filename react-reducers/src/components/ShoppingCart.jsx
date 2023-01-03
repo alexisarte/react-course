@@ -5,7 +5,7 @@ import {
 } from '../reducers/shoppingReducer';
 import CartItem from './CartItem';
 import ProductItem from './ProductItem';
-import { TYPES } from '../actions/contadorAction';
+import { TYPES } from '../actions/shoppingAction.js';
 
 const ShoppingCart = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
@@ -16,8 +16,13 @@ const ShoppingCart = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
 
-  const removeFromCart = (product) => {
-    dispatch({ type: TYPES.REMOVE_FROM_CART, payload: product });
+  const removeFromCart = (id, all = false ) => {
+    if (all) {
+      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
+      console.log('remove all');
+    } else {
+      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+    }
   };
 
   const clearCart = () => {
@@ -41,7 +46,7 @@ const ShoppingCart = () => {
         ))}
       </article>
     </div>
-  );
+  );  
 };
 
 export default ShoppingCart;
