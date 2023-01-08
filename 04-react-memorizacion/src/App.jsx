@@ -1,22 +1,18 @@
-import { useState } from 'react';
-// import './App.css';
 import Contador from './components/Contador';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       <h1>Memorización en React</h1>
       <hr />
-      <h2>Teoría</h2>
+      <h2>Teoria</h2>
       <h3>
         <a
           href="https://es.reactjs.org/docs/react-api.html#reactmemo"
           target="_blank"
           rel="noreferrer"
         >
-          React.memo
+          memo
         </a>
       </h3>
       <ul>
@@ -38,6 +34,43 @@ function App() {
             <li>Salen alertas de rendimiento en la consola.</li>
           </ul>
         </li>
+      </ul>
+      <h3>
+        <a
+          href="https://es.reactjs.org/docs/hooks-reference.html#usecallback"
+          target="_blank"
+          rel="noreferrer"
+        >
+          useCallback
+        </a>
+      </h3>
+      <ul>
+        <li>
+          Memoriza una función, para no volverla a definir en cada render.
+        </li>
+        <li>
+          Úsalo siempre que se pase una función como <b>prop</b> a un componente
+          memorizado.
+        </li>
+        <li>
+          Úsalo siempre que se pase una función como parámetro de un efecto.
+        </li>
+      </ul>
+      <h3>
+        <a
+          href="https://es.reactjs.org/docs/hooks-reference.html#usememo"
+          target="_blank"
+          rel="noreferrer"
+        >
+          useMemo
+        </a>
+      </h3>
+      <ul>
+        <li>
+          Memoriza un valor calculado, es decir, el resultado de una función.
+        </li>
+        <li>Genera propiedades computadas.</li>
+        <li>Úsalo en procesos pesados.</li>
       </ul>
       <hr />
       <Contador />
