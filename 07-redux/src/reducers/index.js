@@ -1,4 +1,7 @@
 import { combineReducers } from 'redux';
-const reducer = combineReducers({});
+import contadorReducer from './contadorReducer';
+const reducer = combineReducers({
+  contador: contadorReducer
+});
 
 export default reducer;

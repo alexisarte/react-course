@@ -1,16 +1,15 @@
 import { Provider } from 'react-redux';
-import { useState } from 'react';
 import './App.css';
 import TeoriaRedux from './components/TeoriaRedux';
 import store from './store';
+import Contador from './components/Contador';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Provider store={store}>
       <div className="App">
         <h1>Redux</h1>
+        <Contador />
         <hr />
         <TeoriaRedux />
       </div>
