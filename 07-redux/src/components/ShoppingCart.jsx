@@ -1,33 +1,17 @@
-import { useReducer } from 'react';
-import {
-  shoppingInitialState,
-  shoppingReducer,
-} from '../reducers/shoppingReducer';
 import CartItem from './CartItem';
 import ProductItem from './ProductItem';
-import { TYPES } from '../actions/shoppingAction.js';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+} from '../actions/shoppingAction';
 
 const ShoppingCart = () => {
-  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  const { products, cart } = state;
-
-  const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
-
-  const removeFromCart = (id, all = false ) => {
-    if (all) {
-      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
-      console.log('remove all');
-    } else {
-      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
-    }
-  };
-
-  const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
-  };
+  const { products, cart } = state.shopping;
 
   return (
     <div>
@@ -35,18 +19,27 @@ const ShoppingCart = () => {
       <h3>Products</h3>
       <article className="box grid-responsive">
         {products.map((product) => (
-          <ProductItem key={product.id} data={product} addToCart={addToCart} />
+          <ProductItem
+            key={product.id}
+            data={product}
+            addToCart={() => dispatch(addToCart(product.id))}
+          />
         ))}
       </article>
       <h3>Cart</h3>
       <article className="box">
-        <button onClick={clearCart}>Clear Cart</button>
+        <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
         {cart.map((item, index) => (
-          <CartItem key={index} data={item} removeFromCart={removeFromCart} />
+          <CartItem
+            key={index}
+            data={item}
+            removeOneFromCart={() => dispatch(removeFromCart(item.id))}
+            removeAllFromCart={() => dispatch(removeFromCart(item.id, true))}
+          />
         ))}
       </article>
     </div>
-  );  
+  );
 };
 
 export default ShoppingCart;

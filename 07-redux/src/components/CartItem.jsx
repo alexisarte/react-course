@@ -1,4 +1,4 @@
-const CartItem = ({ data, removeFromCart }) => {
+const CartItem = ({ data, removeOneFromCart, removeAllFromCart }) => {
   const { id, name, price, quantity } = data;
 
   return (
@@ -7,9 +7,9 @@ const CartItem = ({ data, removeFromCart }) => {
       <h5>
         ${price}.00 x {quantity} = ${price * quantity}.00
       </h5>
-      <button onClick={() => removeFromCart(id)}>Remove one</button>
+      <button onClick={() => removeOneFromCart(id)}>Remove one</button>
       <br />
-      <button onClick={() => removeFromCart(id, true)}>Remove all</button>
+      <button onClick={() => removeAllFromCart(id, true)}>Remove all</button>
       <br />
       <br />
     </div>

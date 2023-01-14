@@ -46,7 +46,6 @@ export const shoppingReducer = (state = initialState, action) => {
             cart: state.cart.filter((item) => item.id !== action.payload),
           };
     }
-
     case REMOVE_ALL_FROM_CART:
       return {
         ...state,

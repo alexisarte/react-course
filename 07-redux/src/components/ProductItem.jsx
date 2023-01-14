@@ -5,8 +5,7 @@ const ProductItem = ({ data, addToCart }) => {
 
   return (
     <div style={{ border: 'thin solid gray', padding: '1rem' }}>
-      <h1>Product</h1>
-      <p>{name}</p>
+      <h1>{name}</h1>
       <p>${price}.00</p>
       <button onClick={() => addToCart(id)}>Add to cart</button>
     </div>
